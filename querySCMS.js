@@ -34,8 +34,8 @@ const data = {
 // Simple get request to get roles in SCMS.
 const getUserRoles = (done = f => f) => {
   connection.get('/user_role/user_role')
-    .then((data) => { done(data); })
-    .catch((error) => { done(error); });
+    .then(roles => done(roles))
+    .catch(error => done(error));
 };
 
 // Post a new user with the data filled above.
@@ -47,13 +47,13 @@ const postNewUser = (done) => {
     },
   })
     .then(response => done(response))
-    .catch((error) => { done(error); });
+    .catch(error => done(error));
 };
 
 // Post new user call.
-postNewUser((data) => {
-  console.log(data);
+postNewUser((response) => {
+  console.log(response);
 });
 
 // Get user roles call.
-getUserRoles((data) => { console.log(data.data); });
+getUserRoles((roles) => { console.log(roles.data); });
